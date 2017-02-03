@@ -1,0 +1,19 @@
+<table width="100%" class="responsive">
+  <colgroup>
+    <col width="25%"/>
+    <col />
+    <col width="10%"/>
+  </colgroup>
+  <tr>
+    <th>To</th>
+    <th>Subject</th>
+    <th>Sent Date</th>
+  </tr>
+  <% @sent_messages.each do |sent_message| %>
+      <tr>
+        <td title="<%= sent_message.to_email %>"><%= sent_message.to_name_or_email %></td>
+        <td><%= sent_message.subject %></td>
+        <td title="<%= sent_message.sent_date.to_s(:db) %>"><%= datetime_format(sent_message.sent_date) %></td>
+      </tr>
+  <% end %>
+</table>

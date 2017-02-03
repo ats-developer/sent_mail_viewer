@@ -1,0 +1,32 @@
+<!--
+# This file contains main application layout.
+# includes javascripts, stylesheets and view part
+#
+# Created At: 04-Feb-2015
+# Author : Atharva System
+# Copyright:: Copyright (c) 2012-2015 Atharva System.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SentMailViewer</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container">
+  <%= render(partial: "layouts/flash_messages", flash: flash) unless flash.empty? %>
+  <div class="row">
+    <div class="twelve columns">
+      <%= content_tag(:div, raw("Welcome: #{auto_link(@current_user.email)} - #{link_to("Logout!", logout_path, :data => {:confirm => "Are you sure to logout ?"})}"), :style => "float:right") if logged_in? %>
+      <h1>Sent Mail Viewer</h1>
+      <%= link_to(image_tag("sign-in-button.png", :style => "height: 40px"), '/auth/google_oauth2', :id => 'sign-in-button') unless logged_in? %>
+      <%= yield %>
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag 'common', 'data-turbolinks-track' => true %>
+</body>
+</html>

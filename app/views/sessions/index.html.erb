@@ -1,0 +1,18 @@
+<!--
+# This file contains list of sent messages.
+# includes search functionality
+#
+# Created At: 04-Feb-2015
+# Author : Atharva System
+# Copyright:: Copyright (c) 2012-2015 Atharva System.
+-->
+
+<% if @sent_messages.present? and !@sent_messages.empty? %>
+    <%= form_tag sessions_path, :method => 'get', :id => "messages_search" do %>
+        <p>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "Search", :name => nil %>
+        </p>
+        <div id="messages"><%= render 'messages' %></div>
+    <% end %>
+<% end %>
